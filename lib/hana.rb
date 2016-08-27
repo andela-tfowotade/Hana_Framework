@@ -1,6 +1,7 @@
 require "hana/version"
 require "hana/controller.rb" 
-require "hana/utils.rb" 
+require "hana/utils.rb"
+require "hana/dependencies.rb"
 
 module Hana
   class Application
