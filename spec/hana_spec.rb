@@ -3,8 +3,10 @@ require 'spec_helper'
 describe 'TodoApp' do
   include Rack::Test::Methods
  
+  TodoApp = TodoApplication::Application.new
   def app
-    TodoApp::Application.new
+    require "../todo/config/routes.rb"
+    TodoApp
   end
  
   it "returns a list of all my todos" do

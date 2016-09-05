@@ -1,4 +1,4 @@
-module Zucy
+module Hana
   module Routing
     class Route
       attr_reader :klass_name, :request, :method_name
@@ -12,7 +12,7 @@ module Zucy
       end
  
       def dispatch
-        klass.new(request).send(method_name)
+        klass.new(request).dispatch(method_name)
       end
     end
   end
