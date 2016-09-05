@@ -1,6 +1,6 @@
 require "spec_helper"
 
-class Zucy::Routing::Router
+class Hana::Routing::Router
   attr_reader :route_data
 
   def draw(&block)
@@ -9,9 +9,9 @@ class Zucy::Routing::Router
   end
 end
 
-describe Zucy::Routing::Router do
+describe Hana::Routing::Router do
   def draw(&block)
-    router = Zucy::Routing::Router.new
+    router = Hana::Routing::Router.new
     router.draw(&block).route_data
   end
 
