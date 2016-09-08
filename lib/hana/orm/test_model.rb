@@ -7,6 +7,12 @@ class Person < Hana::BaseModel
   create_table
 end
 
-person = Person.new(name: "Temi", age: 14)
-puts person.name
-
+# person = Person.new(name: "Temi", age: 14)
+# person.save
+# puts person.name
+# person.update(name: "Sarah")
+puts Person.all.count
+last_name = Person.find(5)
+last_name.destroy
+Person.destroy(8)
+puts Person.all.count

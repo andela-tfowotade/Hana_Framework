@@ -15,9 +15,12 @@ module Hana
       def map_row_to_object(row)
         return nil unless row
         model = new
-        properties.keys.each_with_index(0) do |attribute, index|
+
+        columns.each_with_index() do |attribute, index|
           model.send("#{attribute}=", row[index])
         end
+
+        model
       end
     end
 
@@ -39,10 +42,10 @@ module Hana
     end
 
     def reload
-      @id ||= (Database.execute 'SELECT last_insert_row()')[0][0]
-      row = Database.execute 'SELECT * FROM #{table_name} where id= #{@id}'
+      @id ||= (Database.execute 'SELECT last_insert_rowid()')[0][0]
+      row = Database.execute "SELECT * FROM #{table_name} where id= #{@id}"
 
-      columns.each.with_index() do |column, index|
+      columns.each_with_index() do |column, index|
         send("#{column}=", row[0][index])
       end 
     end
@@ -52,7 +55,7 @@ module Hana
     def new_record
       return false if created_at
       @created_at = Time.now.to_s
-
+      
       Database.execute <<-SQL, new_record_values
         INSERT INTO #{table_name} (#{columns.join(', ')}) VALUES (#{new_record_placeholders})
       SQL

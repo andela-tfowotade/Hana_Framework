@@ -7,8 +7,11 @@ module Hana
     end
 
     def to_table(table_name)
-      attr_accessor :table_name
       @table_name = table_name
+    end
+
+    def table_name
+      @table_name
     end
 
     def property(column_name, column_attributes)
@@ -23,11 +26,11 @@ module Hana
       @properties
     end
 
-    def new_record_placeholder
+    def new_record_placeholders
       (['?'] * properties.size).join(', ')
     end
 
-    def update_record_placeholder
+    def update_record_placeholders
       columns.map { |property| "#{property}=?" }.join(', ')
     end
 
