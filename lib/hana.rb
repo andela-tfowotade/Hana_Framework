@@ -1,16 +1,32 @@
+require 'pry'
 require "hana/version"
-require "hana/controller.rb" 
-require "hana/utils.rb"
-require "hana/dependencies.rb"
-require "hana/routing.rb"
+require "hana/controller" 
+require "hana/utils"
+require "hana/dependencies"
+require "hana/routing/mapper"
+require "hana/routing/route"
+require "hana/routing/router"
 
 module Hana
   class Application
+    @@routes ||= Hana::Routing::Router.new
+
+    def self.routes
+      @@routes
+    end
+
     def call(env)
-      if env["PATH_INFO"] == "/favicon.ico"
-        return [ 500, {}, [] ]
+      @request = Rack::Request.new(env)
+      route = mapper.map_to_route(@request)
+      if route
+        response = route.dispatch
+        return response
       end
-      get_rack_app(env).call(env)
+      [404, {}, ["Route not found"]]
+    end
+
+    def mapper
+      @mapper ||= Routing::Mapper.new(@@routes.endpoints)
     end
   end
 end

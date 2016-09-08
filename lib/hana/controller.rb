@@ -1,4 +1,5 @@
 require 'erubis'
+require 'pry'
 
 module Hana
   class Controller
