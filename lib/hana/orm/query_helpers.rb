@@ -2,29 +2,29 @@ module Hana
   module QueryHelpers
     def create_table
       Database.execute <<-SQL
-        CREATE TABLE IF NOT EXISTS "#{@table_name} ( #{@table_properties} )"
+        CREATE TABLE IF NOT EXISTS #{@table_name} ( #{table_properties} )
       SQL
     end
 
     def to_table(table_name)
-      attr_accessor @table_name
+      attr_accessor :table_name
       @table_name = table_name
     end
 
     def property(column_name, column_attributes)
       @properties ||= {}
-      @properties[column_name] = Openstruct.new(column_attributes)
+      @properties[column_name] = OpenStruct.new(column_attributes)
       attr_accessor column_name
     end
 
     def properties
-      @properties[:id] = Openstruct.new({ type: "integer", primary_key: true })
-      @properties[:created_at] = Openstruct.new({ type: "varchar(10)" })
+      @properties[:id] = OpenStruct.new({ type: "integer", primary_key: true })
+      @properties[:created_at] = OpenStruct.new({ type: "varchar(10)" })
       @properties
     end
 
     def new_record_placeholder
-      (['?']) * properties.size).join(', ')
+      (['?'] * properties.size).join(', ')
     end
 
     def update_record_placeholder
