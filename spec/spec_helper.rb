@@ -1,9 +1,9 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require "simplecov"
-SimpleCov.start "rails"
+SimpleCov.start
 require "coveralls"
-Coveralls.wear! "rails"
+Coveralls.wear!
 
 # Dir['./spec/todo/**/*.rb'].sort.each{ |f| require f }
 
