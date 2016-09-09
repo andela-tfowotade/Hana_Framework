@@ -2,4 +2,7 @@ language: ruby
 rvm:
  - 2.3.0
 
-script: bundle exec rspec
+ env:
+  - TESTFOLDER=spec
+
+script: "bundle exec rspec $TESTFOLDER"
