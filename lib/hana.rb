@@ -1,4 +1,3 @@
-require 'pry'
 require "hana/version"
 require "hana/controller" 
 require "hana/utils"
@@ -6,6 +5,7 @@ require "hana/dependencies"
 require "hana/routing/mapper"
 require "hana/routing/route"
 require "hana/routing/router"
+require "hana/orm/base_model"
 
 module Hana
   class Application
