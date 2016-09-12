@@ -5,8 +5,8 @@ class TodoController < Hana::Controller
   end
 
   def new
-    @name = "Adim!"
-    @nick_name = "Adim"
+    @name = "Temi"
+    @nick_name = "Themmy"
   end
  
   def index
