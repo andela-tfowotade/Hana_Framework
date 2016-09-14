@@ -1,7 +1,7 @@
-require_relative 'query_helpers'
-require 'ostruct'
-require_relative 'persistence'
-require_relative 'database'
+require_relative "query_helpers"
+require "ostruct"
+require_relative "persistence"
+require_relative "database"
 
 module Hana
   class BaseModel
@@ -31,7 +31,7 @@ module Hana
     end
 
     def self.all
-      rows = Database.execute "SELECT * FROM #{table_name}" 
+      rows = Database.execute "SELECT * FROM #{table_name}"
       rows.map { |row| map_row_to_object(row) }
     end
 
@@ -56,7 +56,7 @@ module Hana
 
     def self.where(attributes = {})
       search_values = attributes.values
-      search_place_holder = attributes.keys.map {|key| "#{key}=? "}.join('and')
+      search_place_holder = attributes.keys.map { |key| "#{key}=? " }.join("and")
 
       rows = Database.execute <<-SQL, search_values
         SELECT * FROM #{table_name} where #{search_place_holder}

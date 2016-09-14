@@ -6,11 +6,11 @@ module Hana
         @klass_name, @method_name = klass_and_method
         @request = request
       end
- 
+
       def klass
         klass_name.constantize
       end
- 
+
       def dispatch
         klass.new(request).dispatch(method_name)
       end

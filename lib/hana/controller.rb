@@ -1,6 +1,3 @@
-require 'erubis'
-require 'pry'
-
 module Hana
   class Controller
     attr_reader :request
@@ -13,7 +10,7 @@ module Hana
       request.params
     end
 
-    def response(body, status=200, header={})
+    def response(body, status = 200, header = {})
       @response = Rack::Response.new(body, status, header)
     end
 
@@ -32,7 +29,7 @@ module Hana
       vars = {}
 
       instance_variables.each do |var|
-        key = var.to_s.gsub("@", "").to_sym
+        key = var.to_s.delete("@").to_sym
         vars[key] = instance_variable_get(var)
       end
 
@@ -44,7 +41,7 @@ module Hana
     end
 
     def dispatch(action)
-      self.send(action)
+      send(action)
 
       if get_response
         get_response
@@ -55,7 +52,7 @@ module Hana
     end
 
     def self.action(action_name)
-      -> (env) { self.new(env).dispatch(action_name) }
+      -> (env) { new(env).dispatch(action_name) }
     end
   end
 end
