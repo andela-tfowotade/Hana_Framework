@@ -26,8 +26,8 @@ module Hana
     end
 
     def render_template(view_name, locals = {})
-      filename = File.join("app", "views", controller_name, "#{view_name}.erb")
-      template = File.read(filename)
+      filename = File.join("app", "views", controller_name, "#{view_name}.html.erb")
+      template = Tilt::ERBTemplate.new(filename)
 
       vars = {}
 
@@ -36,7 +36,7 @@ module Hana
         vars[key] = instance_variable_get(var)
       end
 
-      Erubis::Eruby.new(template).result(locals.merge(vars))
+      template_data = template.render(self, locals.merge(vars))
     end
 
     def controller_name
