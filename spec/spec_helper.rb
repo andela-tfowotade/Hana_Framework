@@ -2,10 +2,8 @@ $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
 require "simplecov"
 SimpleCov.start
-# require "coveralls"
-# Coveralls.wear!
-
-# Dir['./spec/todo/**/*.rb'].sort.each{ |f| require f }
+require "coveralls"
+Coveralls.wear!
 
 require "todo/config/application"
 require "rspec"
