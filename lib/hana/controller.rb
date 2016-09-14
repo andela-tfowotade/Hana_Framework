@@ -1,6 +1,3 @@
-require 'erubis'
-require 'pry'
-
 module Hana
   class Controller
     attr_reader :request
