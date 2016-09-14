@@ -1,4 +1,4 @@
-require_relative 'base_model'
+require_relative "base_model"
 
 class Person < Hana::BaseModel
   to_table :persons

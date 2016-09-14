@@ -27,7 +27,6 @@ describe "QueryHelpers" do
     end
   end
 
-
   describe ".create_table" do
     it "executes sql query to create database table" do
       expect(db).to receive(:execute)

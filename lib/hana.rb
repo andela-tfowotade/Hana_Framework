@@ -1,5 +1,5 @@
 require "hana/version"
-require "hana/controller" 
+require "hana/controller"
 require "hana/utils"
 require "hana/dependencies"
 require "hana/routing/mapper"

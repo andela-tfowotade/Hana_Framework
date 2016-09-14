@@ -21,17 +21,17 @@ module Hana
     end
 
     def properties
-      @properties[:id] = OpenStruct.new({ type: "integer", primary_key: true })
-      @properties[:created_at] = OpenStruct.new({ type: "varchar(10)" })
+      @properties[:id] = OpenStruct.new(type: "integer", primary_key: true)
+      @properties[:created_at] = OpenStruct.new(type: "varchar(10)")
       @properties
     end
 
     def new_record_placeholders
-      (['?'] * properties.size).join(', ')
+      (["?"] * properties.size).join(", ")
     end
 
     def update_record_placeholders
-      columns.map { |property| "#{property}=?" }.join(', ')
+      columns.map { |property| "#{property}=?" }.join(", ")
     end
 
     def query_string(column_attributes)
@@ -39,7 +39,7 @@ module Hana
       query_builder << column_attributes.type
       query_builder << "primary key autoincrement" if column_attributes.primary_key
       query_builder << "not null" unless column_attributes.nullable || column_attributes.nullable.nil?
-      query_builder.join(" ")        
+      query_builder.join(" ")
     end
 
     def initialize_query_holder
@@ -52,7 +52,7 @@ module Hana
       query_holder = initialize_query_holder
 
       properties.each do |column_name, column_attributes|
-        query_holder << "#{column_name} #{ query_string(column_attributes) }"
+        query_holder << "#{column_name} #{query_string(column_attributes)}"
       end
       query_holder.join(", ")
     end

@@ -16,7 +16,7 @@ module Hana
         return nil unless row
         model = new
 
-        columns.each_with_index() do |attribute, index|
+        columns.each_with_index do |attribute, index|
           model.send("#{attribute}=", row[index])
         end
 
@@ -25,7 +25,7 @@ module Hana
     end
 
     def save
-      #validate
+      # validate
       if errors.empty?
         new_record || update_record
         reload
@@ -42,12 +42,12 @@ module Hana
     end
 
     def reload
-      @id ||= (Database.execute 'SELECT last_insert_rowid()')[0][0]
+      @id ||= (Database.execute "SELECT last_insert_rowid()")[0][0]
       row = Database.execute "SELECT * FROM #{table_name} where id= #{@id}"
 
-      columns.each_with_index() do |column, index|
+      columns.each_with_index do |column, index|
         send("#{column}=", row[0][index])
-      end 
+      end
     end
 
     private
@@ -55,7 +55,7 @@ module Hana
     def new_record
       return false if created_at
       @created_at = Time.now.to_s
-      
+
       Database.execute <<-SQL, new_record_values
         INSERT INTO #{table_name} (#{columns.join(', ')}) VALUES (#{new_record_placeholders})
       SQL
