@@ -25,14 +25,16 @@ module Hana
     end
 
     def save
-      # validate
       if errors.empty?
         new_record || update_record
         reload
+        self
       else
         false
       end
     end
+
+    alias save! save
 
     def update(attributes)
       attributes.each do |key, value|
