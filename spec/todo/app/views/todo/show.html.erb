@@ -1,7 +1,7 @@
 <div>
   <%= @todo.title %><br>
   <%= @todo.body %><br>
-  <a href='<%="/todo/#{@todo.id}/show"%>'>Edit</a>
+  <a href='<%="/todo/#{@todo.id}/edit"%>'>Edit</a>
   <form action="/todo/<%= @todo.id %>/destroy" method="post">
     <input type="hidden" class="form-control" name="_method" value ="delete" />
     <button type="submit" name="button" class="btn btn-danger delete-button" id="delete_button">
