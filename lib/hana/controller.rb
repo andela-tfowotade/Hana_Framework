@@ -26,18 +26,35 @@ module Hana
       response([], status, "Location" => address)
     end
 
-    def prepare_templates(layout, filename)
+    def layout
+      File.join(
+        APP_ROOT,
+        "app",
+        "views",
+        "layout",
+        "application.html.erb"
+      )
+    end
+
+    def filename(view_name)
+      File.join(
+        APP_ROOT,
+        "app",
+        "views",
+        controller_name,
+        "#{view_name}.html.erb"
+      )
+    end
+
+    def prepare_templates(view_name)
       layout_template = Tilt::ERBTemplate.new(layout)
-      view_template = Tilt::ERBTemplate.new(filename)
+      view_template = Tilt::ERBTemplate.new(filename(view_name))
 
       [layout_template, view_template]
     end
 
     def render_template(view_name, locals = {})
-      layout = File.join( APP_ROOT, "app", "views", "layout", "application.html.erb")
-      filename = File.join( APP_ROOT, "app", "views", controller_name, "#{view_name}.html.erb")
-
-      layout_template, view_template = prepare_templates(layout, filename)
+      layout_template, view_template = prepare_templates(view_name)
       title = view_name.capitalize
 
       layout_template.render(self, title: title) do
