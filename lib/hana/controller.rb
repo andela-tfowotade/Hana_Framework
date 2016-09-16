@@ -34,8 +34,8 @@ module Hana
     end
 
     def render_template(view_name, locals = {})
-      layout = File.join("app", "views", "layout", "application.html.erb")
-      filename = File.join("app", "views", controller_name, "#{view_name}.html.erb")
+      layout = File.join( APP_ROOT, "app", "views", "layout", "application.html.erb")
+      filename = File.join( APP_ROOT, "app", "views", controller_name, "#{view_name}.html.erb")
 
       layout_template, view_template = prepare_templates(layout, filename)
       title = view_name.capitalize

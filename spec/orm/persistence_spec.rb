@@ -1,19 +1,19 @@
-# require "spec_helper"
+require "spec_helper"
 
-# describe "Persistence" do
-#   after(:each) { User.destroy_all }
+describe "Persistence" do
+  describe ".create" do
+    it "creates a new record in the database" do
+      expect{ Todo.create(title: "Temi", body: "this is the body") }.to change{ Todo.all.count }.by(1)
+      Todo.destroy_all
+    end
+  end
 
-#   describe ".create" do
-#     it "creates a new record in the database" do
-#       # expect{ User.create(name: "Temi", age: 13) }.to change{ User.all.count }.by(1)
-#     end
-#   end
+  describe ".save" do
+    it "persists the record in the database" do
+      todo = Todo.new(title: "Temi", body: "this is the body")
 
-#   describe ".save" do
-#     it "persists the record in the database" do
-#       user = User.new(name: "Temi", age: 15)
-
-#       # expect{ user.save }.to change{ User.all.count }.by(1)
-#     end
-#   end
-# end
+      expect{ todo.save }.to change{ Todo.all.count }.by(1)
+      Todo.destroy_all
+    end
+  end
+end
