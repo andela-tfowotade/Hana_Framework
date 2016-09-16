@@ -12,7 +12,7 @@ module Hana
       end
 
       def dispatch
-        klass.new(request).dispatch(method_name)
+        klass.new(@request).dispatch(method_name)
       end
     end
   end

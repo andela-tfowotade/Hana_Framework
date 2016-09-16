@@ -1,0 +1,16 @@
+<div class="tab-pane active">
+  <ul class="list-group">
+    <% @todos.each do |todo| %>
+      <%= todo.title %><br>
+      <%= todo.body %><br>
+      <a href='<%="/todo/#{todo.id}/edit"%>'>Edit</a><br>
+      <a href='<%="/todo/#{todo.id}/show"%>'>Show</a>
+      <form action="/todo/<%= todo.id %>/destroy" method="post">
+        <input type="hidden" class="form-control" name="_method" value ="delete" />
+        <button type="submit" name="button" class="btn btn-danger delete-button" id="delete_button">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </form>
+    <% end %>
+  </ul>
+</div>

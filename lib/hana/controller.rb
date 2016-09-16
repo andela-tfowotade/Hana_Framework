@@ -2,8 +2,8 @@ module Hana
   class Controller
     attr_reader :request
 
-    def initialize(env)
-      @request ||= Rack::Request.new(env)
+    def initialize(request)
+      @request ||= request
     end
 
     def params
@@ -22,18 +22,27 @@ module Hana
       response(render_template(*args))
     end
 
+    def redirect_to(address, status: 301)
+      response([], status, "Location" => address)
+    end
+
+    def prepare_templates(layout, filename)
+      layout_template = Tilt::ERBTemplate.new(layout)
+      view_template = Tilt::ERBTemplate.new(filename)
+
+      [layout_template, view_template]
+    end
+
     def render_template(view_name, locals = {})
+      layout = File.join("app", "views", "layout", "application.html.erb")
       filename = File.join("app", "views", controller_name, "#{view_name}.html.erb")
-      template = Tilt::ERBTemplate.new(filename)
 
-      vars = {}
+      layout_template, view_template = prepare_templates(layout, filename)
+      title = view_name.capitalize
 
-      instance_variables.each do |var|
-        key = var.to_s.delete("@").to_sym
-        vars[key] = instance_variable_get(var)
+      layout_template.render(self, title: title) do
+        view_template.render(self, locals)
       end
-
-      template_data = template.render(self, locals.merge(vars))
     end
 
     def controller_name
@@ -42,13 +51,8 @@ module Hana
 
     def dispatch(action)
       send(action)
-
-      if get_response
-        get_response
-      else
-        render(action)
-        get_response
-      end
+      render(action) unless get_response
+      get_response
     end
 
     def self.action(action_name)

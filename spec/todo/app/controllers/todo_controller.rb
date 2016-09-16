@@ -1,29 +1,51 @@
-class TodoController < Hana::Controller
-  def initialize(request)
-    @request = request
+class TodoController < ApplicationController
+  def index
+    @todos = Todo.all
   end
 
   def new
-    @name = "Temi"
-    @nick_name = "Themmy"
-  end
-
-  def index
-    "['Write a book', 'Build a house', 'Get married', 'Buy a car']"
+    @todo = Todo.new
   end
 
   def show
+    @todo = Todo.find(params["id"])
   end
 
   def create
-    "Post go swimming"
+    @todo = Todo.new(todo_params)
+    if @todo.save
+      @todos = Todo.all
+      redirect_to "/"
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @todo = Todo.find(params["id"])
   end
 
   def update
-    "Put Write a book"
+    @todo = Todo.find(params["id"])
+    if @todo.update(todo_params)
+      redirect_to "/todo/#{@todo.id}/show"
+    else
+      render :edit
+    end
   end
 
   def destroy
-    "Delete Write a book"
+    @todo = Todo.find(params["id"])
+    @todo.destroy
+    redirect_to "/"
+  end
+
+  private
+
+  def todo_params
+    {
+      title: params["title"],
+      body: params["body"]
+    }
   end
 end
