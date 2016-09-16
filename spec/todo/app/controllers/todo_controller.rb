@@ -15,7 +15,7 @@ class TodoController < ApplicationController
     @todo = Todo.new(todo_params)
     if @todo.save
       @todos = Todo.all
-      redirect_to "/todo/#{@todo.id}/show"
+      redirect_to "/"
     else
       render :new
     end
