@@ -1,5 +1,5 @@
 # Hana 
-[![Build Status](https://travis-ci.org/andela-tfowotade/hana.svg?branch=develop)](https://travis-ci.org/andela-tfowotade/hana) [![Coverage Status](https://coveralls.io/repos/github/andela-tfowotade/hana/badge.svg?branch=ch-app-config-130105879)](https://coveralls.io/github/andela-tfowotade/hana?branch=ch-app-config-130105879) [![Code Climate](https://codeclimate.com/repos/57d97bb870488d66b9000c2d/badges/fbe7633da1dd01cf8bfe/gpa.svg)](https://codeclimate.com/repos/57d97bb870488d66b9000c2d/feed)
+[![Build Status](https://travis-ci.org/andela-tfowotade/hana.svg?branch=develop)](https://travis-ci.org/andela-tfowotade/hana) [![Coverage Status](https://coveralls.io/repos/github/andela-tfowotade/hana/badge.svg)](https://coveralls.io/github/andela-tfowotade/hana) [![Code Climate](https://codeclimate.com/repos/57d97bb870488d66b9000c2d/badges/fbe7633da1dd01cf8bfe/gpa.svg)](https://codeclimate.com/repos/57d97bb870488d66b9000c2d/feed)
 
 Hana is an mvc framework built with Ruby for building web applications. It is a lightweight portable ruby web framework modelled after Rails. Hana is ligthweight and hence fit for simple and quick applications.
 
