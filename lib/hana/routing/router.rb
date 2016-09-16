@@ -29,7 +29,7 @@ module Hana
 
       def pattern_for(path)
         placeholders = []
-        path.gsub!(/(:w+)/) do |match|
+        path.gsub!(/(:\w+)/) do |match|
           placeholders << match[1..-1].freeze
           "(?<#{placeholders.last}>[^/?#]+)"
         end

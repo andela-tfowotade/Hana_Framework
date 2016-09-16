@@ -2,8 +2,8 @@ module Hana
   class Controller
     attr_reader :request
 
-    def initialize(env)
-      @request ||= Rack::Request.new(env)
+    def initialize(request)
+      @request ||= request
     end
 
     def params
@@ -22,18 +22,15 @@ module Hana
       response(render_template(*args))
     end
 
+    def redirect_to(address, status: 301)
+      response([], status, "Location" => address)
+    end
+
     def render_template(view_name, locals = {})
       filename = File.join("app", "views", controller_name, "#{view_name}.html.erb")
       template = Tilt::ERBTemplate.new(filename)
 
-      vars = {}
-
-      instance_variables.each do |var|
-        key = var.to_s.delete("@").to_sym
-        vars[key] = instance_variable_get(var)
-      end
-
-      template_data = template.render(self, locals.merge(vars))
+      template_data = template.render(self, locals)
     end
 
     def controller_name

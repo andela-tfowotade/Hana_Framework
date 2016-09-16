@@ -51,7 +51,6 @@ module Hana
 
     def self.destroy_all
       Database.execute "DELETE FROM #{table_name}"
-      Database.execute "DELETE FROM sqlite_sequence WHERE name=#{table_name}"
     end
 
     def self.where(attributes = {})
