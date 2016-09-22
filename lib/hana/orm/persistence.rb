@@ -25,13 +25,9 @@ module Hana
     end
 
     def save
-      if errors.empty?
-        new_record || update_record
-        reload
-        self
-      else
-        false
-      end
+      new_record || update_record
+      reload
+      self
     end
 
     alias save! save

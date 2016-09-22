@@ -72,8 +72,8 @@ module Hana
       get_response
     end
 
-    def self.action(action_name)
-      -> (env) { new(env).dispatch(action_name) }
-    end
+    # def self.action(action_name)
+    #   -> (env) { new(env).dispatch(action_name) }
+    # end
   end
 end
