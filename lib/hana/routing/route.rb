@@ -8,7 +8,7 @@ module Hana
       end
 
       def klass
-        klass_name.constantize
+        Object.const_get(klass_name)
       end
 
       def dispatch
