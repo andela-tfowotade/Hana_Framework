@@ -42,14 +42,9 @@ module Hana
       query_builder.join(" ")
     end
 
-    def initialize_query_holder
+    def table_properties
       attr_accessor :id, :created_at
       query_holder = []
-      query_holder
-    end
-
-    def table_properties
-      query_holder = initialize_query_holder
 
       properties.each do |column_name, column_attributes|
         query_holder << "#{column_name} #{query_string(column_attributes)}"

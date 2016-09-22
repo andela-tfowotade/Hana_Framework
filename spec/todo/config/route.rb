@@ -1,4 +1,5 @@
 TodoApplication.routes.draw do
+  root "todo#index"
   get "/", to: "todo#index"
   get "/todo/new", to: "todo#new"
   post "/todo/create", to: "todo#create"
@@ -6,6 +7,4 @@ TodoApplication.routes.draw do
   get "/todo/:id/edit", to: "todo#edit"
   put "/todo/:id/update", to: "todo#update"
   delete "/todo/:id/destroy", to: "todo#destroy"
-
-  get "/todo/about_me", to: "todo#about_me"
 end

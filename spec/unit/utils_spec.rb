@@ -42,18 +42,4 @@ describe "Utility Methods" do
       it { expect("person".to_camel_case).to eq "Person" }
     end
   end
-
-  context "#constantize" do
-    context "`Hash`" do
-      it { expect("Hash".constantize).to eq Hash }
-    end
-
-    context "`String`" do
-      it { expect("String".constantize).to eq String }
-    end
-
-    context "`Array`" do
-      it { expect("Array".constantize).to eq Array }
-    end
-  end
 end

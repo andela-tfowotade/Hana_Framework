@@ -12,8 +12,4 @@ class String
     return self if self !~ /_/ && self =~ /[A-Z]+.*/
     split("_").map(&:capitalize).join # hi_there => HiThere
   end
-
-  def constantize
-    Object.const_get(self)
-  end
 end

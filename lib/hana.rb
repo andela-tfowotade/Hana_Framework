@@ -10,10 +10,8 @@ require "pry"
 
 module Hana
   class Application
-    @@routes ||= Hana::Routing::Router.new
-
     def self.routes
-      @@routes
+      @@routes ||= Hana::Routing::Router.new
     end
 
     def call(env)
