@@ -71,9 +71,5 @@ module Hana
       render(action) unless get_response
       get_response
     end
-
-    # def self.action(action_name)
-    #   -> (env) { new(env).dispatch(action_name) }
-    # end
   end
 end
