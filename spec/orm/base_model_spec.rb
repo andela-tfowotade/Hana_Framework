@@ -19,7 +19,7 @@ RSpec.describe Hana::BaseModel do
         todo = Todo.new attributes_for(:todo)
         expect do
           todo.save
-        end.to change{ Todo.all.count }.by 1
+        end.to change { Todo.all.count }.by 1
         Todo.destroy_all
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe Hana::BaseModel do
       it "doesn't create a new record in the database" do
         expect do
           @todo.update(body: "Watch the machester derby")
-        end.to change{ Todo.all.count }.by 0
+        end.to change { Todo.all.count }.by 0
       end
 
       it "updates the object" do
@@ -53,7 +53,7 @@ RSpec.describe Hana::BaseModel do
       todo = create(:todo)
       expect do
         todo.destroy
-      end.to change{ Todo.all.count }.by(-1)
+      end.to change { Todo.all.count }.by(-1)
     end
     Todo.destroy_all
   end
@@ -63,7 +63,7 @@ RSpec.describe Hana::BaseModel do
       todo = create(:todo)
       expect do
         Todo.destroy(todo.id)
-      end.to change{ Todo.all.count }.by(-1)
+      end.to change { Todo.all.count }.by(-1)
     end
     Todo.destroy_all
   end
@@ -86,7 +86,7 @@ RSpec.describe Hana::BaseModel do
       end
 
       it "returns total number of records in the database" do
-        expect( Todo.all.count ).to eq 2
+        expect(Todo.all.count).to eq 2
       end
     end
 
@@ -104,7 +104,7 @@ RSpec.describe Hana::BaseModel do
       second_task = create(:todo, title: "Pre QC", body: "QC Prep")
       third_task = create(:todo, title: "QC", body: "QC assessment")
 
-      expect(Todo.where(title: 'QC').count).to eq 1
+      expect(Todo.where(title: "QC").count).to eq 1
 
       Todo.destroy_all
     end
@@ -153,7 +153,7 @@ RSpec.describe Hana::BaseModel do
     it "increase todos count" do
       expect do
         Todo.create(attributes_for(:todo))
-      end.to change{ Todo.all.count }.by 1
+      end.to change { Todo.all.count }.by 1
       Todo.destroy_all
     end
   end
