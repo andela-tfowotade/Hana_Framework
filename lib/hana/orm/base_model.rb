@@ -13,7 +13,6 @@ module Hana
     Database.connect
 
     def initialize(attributes = {})
-      @errors ||= []
       attributes.each { |column_name, value| send("#{column_name}=", value) }
     end
 
