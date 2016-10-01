@@ -3,8 +3,8 @@ $LOAD_PATH.unshift File.expand_path("../../spec", __FILE__)
 
 require "simplecov"
 SimpleCov.start
-require "coveralls"
-Coveralls.wear!
+# require "coveralls"
+# Coveralls.wear!
 require "hana"
 require "todo/config/application"
 require "rspec"

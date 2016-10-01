@@ -8,8 +8,6 @@ module Hana
     extend Hana::QueryHelpers
     include Hana::Persistence
 
-    attr_accessor :errors
-
     Database.connect
 
     def initialize(attributes = {})
